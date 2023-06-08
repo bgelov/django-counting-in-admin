@@ -54,7 +54,7 @@
 {% block after_field_sets %}
     <!--- Add section for counting result--->
     <div class="submit-row">
-        <span>Общее количество: <span id="resultFieldTop">0</span></span>
+        <span>Total: <span id="resultFieldTop">0</span></span>
     </div>
     <!--- End section for counting result --->
 {% endblock %}
@@ -71,45 +71,45 @@
 
     <!--- Add section for counting result--->
     <div class="submit-row">
-        <span>Общее количество: <span id="resultFieldBottom">0</span></span>
+        <span>Total: <span id="resultFieldBottom">0</span></span>
     </div>
     <!--- End section for counting result --->
 
     <!--- Script for counting input sum ---->
     <script>
-        let totalSum = 0;
-        const resultFieldTop = document.getElementById('resultFieldTop');
-        const resultFieldBottom = document.getElementById('resultFieldBottom');
+		let totalSum = 0;
+		const resultFieldTop = document.getElementById('resultFieldTop');
+		const resultFieldBottom = document.getElementById('resultFieldBottom');
 
-        // Функция для подсчета общей суммы
-        function calculateTotalSum() {
-          totalSum = 0;
+		// Function for calculating the total amount
+		function calculateTotalSum() {
+		  totalSum = 0;
 
-          // Получить все input с типом number
-          const numberInputs = document.querySelectorAll('input[type="number"]');
+		  // get all inputs of the number type
+		  const numberInputs = document.querySelectorAll('input[type="number"]');
 
-          // Пройтись по каждому input и добавить его значение к общей сумме
-          numberInputs.forEach(input => {
-            // Проверить, содержит ли id значение "id_incomingproduct_set-"
-            if (input.id.includes("id_incomingproduct_set-")) {
-              const value = parseFloat(input.value) || 0; // Преобразовать значение в число, если возможно
-              totalSum += value;
-            }
-          });
+		  // loop through each input and add its value to the total
+		  numberInputs.forEach(input => {
+			// Check if the id contains the value "id_incomingproduct_set-"
+			if (input.id.includes("id_incomingproduct_set-")) {
+			  const value = parseFloat(input.value) || 0; //convert value to a number, if possible
+			  totalSum += value;
+			}
+		  });
 
-          // console.log(totalSum);
-          resultFieldTop.textContent = totalSum; // Обновление значения поля
-          resultFieldBottom.textContent = totalSum; // Обновление значения поля
-        }
+		  // console.log(totalSum);
+		  resultFieldTop.textContent = totalSum; // Update field value
+		  resultFieldBottom.textContent = totalSum; // Update field value
+		}
 
-        // Добавить обработчик события input для всех input с типом number
-        document.addEventListener('input', function(event) {
-          const target = event.target;
-          if (target.tagName === 'INPUT' && target.type === 'number') {
-            calculateTotalSum();
-          }
-        });
-        calculateTotalSum();
+		// Add an input event handler for all inputs with type number
+		document.addEventListener('input', function(event) {
+		  const target = event.target;
+		  if (target.tagName === 'INPUT' && target.type === 'number') {
+			calculateTotalSum();
+		  }
+		});
+		calculateTotalSum();
     </script>
     <!--- End script for counting input sum ---->
 
